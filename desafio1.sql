@@ -7,13 +7,13 @@ USE SpotifyClone;
 CREATE TABLE `plano` (
     `id_plano` INT AUTO_INCREMENT PRIMARY KEY,
     `nome_plano` VARCHAR(45) NOT NULL,
-    `valor_plano` DECIMAL(3, 2)
-)  ENGINE=INNODB;
+    `valor_plano` FLOAT
+);
 
 CREATE TABLE `artista` (
     `id_artista` INT AUTO_INCREMENT PRIMARY KEY,
     `name_artista` VARCHAR(100) NOT NULL
-)  ENGINE=INNODB;
+);
 
 CREATE TABLE `usuario` (
     `id_user` INT AUTO_INCREMENT PRIMARY KEY,
@@ -22,7 +22,7 @@ CREATE TABLE `usuario` (
     `id_plano` INT,
     FOREIGN KEY (`id_plano`)
         REFERENCES `plano` (`id_plano`)
-)  ENGINE=INNODB;
+);
 
 CREATE TABLE `album` (
     `id_album` INT AUTO_INCREMENT PRIMARY KEY,
@@ -30,15 +30,16 @@ CREATE TABLE `album` (
     `id_artista` INT,
     FOREIGN KEY (`id_artista`)
         REFERENCES `artista` (`id_artista`)
-)  ENGINE=INNODB;
+);
 
 CREATE TABLE `musicas` (
     `id_musica` INT AUTO_INCREMENT PRIMARY KEY,
     `name_musica` VARCHAR(100) NOT NULL,
     `id_album` INT,
+    `id_artista` INT,
     FOREIGN KEY (`id_album`)
         REFERENCES `album` (`id_album`)
-)  ENGINE=INNODB;
+);
 
 CREATE TABLE `seguindo` (
     `id_user` INT,
@@ -48,7 +49,7 @@ CREATE TABLE `seguindo` (
         REFERENCES `usuario` (`id_user`),
     FOREIGN KEY (`id_artista`)
         REFERENCES `artista` (`id_artista`)
-)  ENGINE=INNODB;
+);
 
 CREATE TABLE `historico` (
     `id_user` INT,
@@ -58,7 +59,7 @@ CREATE TABLE `historico` (
         REFERENCES `usuario` (`id_user`),
     FOREIGN KEY (`id_musica`)
         REFERENCES `musicas` (`id_musica`)
-)  ENGINE=INNODB;
+);
 
 INSERT INTO `plano` ( `nome_plano`, `valor_plano`) VALUES
 ( 'gratuito', 0),
@@ -91,18 +92,15 @@ INSERT INTO `musicas` (`name_musica`, `id_album`) VALUES
 ('Troubles Of My Inner Fire', 2),
 ('Time Fireworks', 2),
 ('Magic Circus', 3),
-('Honey', 3),
-('So Do I',3),
-('Sweetie', 3),
-("Let's Go Wild", 3),
+('Honey, So Do I', 3),
+('Sweetie, Let\'s Go Wild', 3),
 ('She Knows', 3),
 ('Fantasy For Me', 4),
 ('Celebration Of More', 4),
 ('Rock His Everthing', 4),
 ('Home Forever', 4),
 ('Diamond Power', 4),
-('Honey', 4),
-("Let's Be Silly", 4),
+('Honey, Let\'s Be Silly', 4),
 ('Thang Of Thunder', 5),
 ('Words Of Her Life', 5),
 ('Without My Streets', 5);
@@ -110,18 +108,18 @@ INSERT INTO `musicas` (`name_musica`, `id_album`) VALUES
 INSERT INTO `historico` (`id_user`, `id_musica`) VALUES
 (1, 1),
 (1, 6),
+(1, 14),
 (1, 16),
-(1, 19),
-(2, 15),
-(2, 20),
+(2, 13),
+(2, 17),
 (2, 2),
-(2, 6),
+(2, 15),
 (3, 4),
-(3, 19),
+(3, 16),
 (3, 6),
 (4, 3),
-(4, 21),
-(4, 13);
+(4, 18),
+(4, 11);
 
 INSERT INTO `seguindo` (`id_user`, `id_artista`) VALUES
 (1, 1),
