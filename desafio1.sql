@@ -36,7 +36,6 @@ CREATE TABLE `musicas` (
     `id_musica` INT AUTO_INCREMENT PRIMARY KEY,
     `name_musica` VARCHAR(100) NOT NULL,
     `id_album` INT,
-    `id_artista` INT,
     FOREIGN KEY (`id_album`)
         REFERENCES `album` (`id_album`)
 );
