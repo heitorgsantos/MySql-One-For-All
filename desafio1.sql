@@ -69,7 +69,7 @@ INSERT INTO `artista` (`name_artista`) VALUES
 ( 'Walter Phoenix'),
 ( 'Peter Strong'),
 ( 'Lance Day'),
-( 'Freedie Sahnno');
+( 'Freedie Shannon');
 
 INSERT INTO `usuario` (`usuario_name`, `idade`, `id_plano`) VALUES
 ('Thati', 23, 1),
